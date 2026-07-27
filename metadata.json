@@ -1,0 +1,6 @@
+{
+  "name": "LotusGym - Plano Estratégico",
+  "description": "Apresentação interativa do Plano Estratégico de Crescimento e Transformação Digital da LotusGym com estilo consultoria McKinsey/Falconi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
