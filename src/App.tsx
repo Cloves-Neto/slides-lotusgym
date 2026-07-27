@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Header } from './components/Header';
 import { SlideRenderer } from './components/SlideRenderer';
-import { PresenterModePanel } from './components/PresenterModePanel';
 import { GridOverviewModal } from './components/GridOverviewModal';
 import { EditConfigModal } from './components/EditConfigModal';
 import { SLIDES } from './data/slidesData';
@@ -10,7 +9,6 @@ import { PresenterConfig, GymMetrics } from './types';
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState<number>(1);
-  const [showNotes, setShowNotes] = useState<boolean>(false);
   const [showGridModal, setShowGridModal] = useState<boolean>(false);
   const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
@@ -19,21 +17,21 @@ export default function App() {
   // Presenter Config State
   const [presenterConfig, setPresenterConfig] = useState<PresenterConfig>({
     presenterName: 'Cloves Neto',
-    presenterTitle: 'Consultor de Estratégia e Crescimento',
+    presenterTitle: 'CONSULTOR LOTUSGYM',
     year: '2024',
     contactEmail: 'clovesneto@lotusgym.com.br',
-    contactPhone: '(11) 99887-7665'
+    contactPhone: '11967338685'
   });
 
   // Gym Baseline Metrics State
   const [gymMetrics, setGymMetrics] = useState<GymMetrics>({
-    activeMembers: 820,
-    monthlyChurn: 8.5,
-    avgTicket: 139.90,
-    monthlyLeads: 240,
-    conversionRate: 12.0,
-    npsScore: 54,
-    unpaidRate: 9.2
+    activeMembers: 5404,
+    monthlyChurn: 0,
+    avgTicket: 0,
+    monthlyLeads: 0,
+    conversionRate: 0,
+    npsScore: 0,
+    unpaidRate: 0
   });
 
   // Slide Navigation Handlers
@@ -72,9 +70,6 @@ export default function App() {
       } else if (e.key.toLowerCase() === 'g') {
         e.preventDefault();
         setShowGridModal((prev) => !prev);
-      } else if (e.key.toLowerCase() === 'n') {
-        e.preventDefault();
-        setShowNotes((prev) => !prev);
       } else if (e.key.toLowerCase() === 'f') {
         e.preventDefault();
         toggleFullscreen();
@@ -104,9 +99,6 @@ export default function App() {
     }
   };
 
-  const currentSlideData = SLIDES.find((s) => s.id === currentSlide) || SLIDES[0];
-  const nextSlideData = SLIDES.find((s) => s.id === currentSlide + 1);
-
   return (
     <div className={`w-screen h-screen flex flex-col overflow-hidden select-none ${
       isDarkMode ? 'bg-black text-white' : 'bg-zinc-950 text-white'
@@ -118,8 +110,6 @@ export default function App() {
         onPrev={handlePrev}
         onNext={handleNext}
         onOpenGrid={() => setShowGridModal(true)}
-        onToggleNotes={() => setShowNotes(!showNotes)}
-        showNotes={showNotes}
         onOpenConfig={() => setShowConfigModal(true)}
         isDarkMode={isDarkMode}
         onToggleTheme={() => setIsDarkMode(!isDarkMode)}
@@ -128,7 +118,7 @@ export default function App() {
         presenterConfig={presenterConfig}
       />
 
-      {/* Main Slide Stage & Presenter Panel Area */}
+      {/* Main Slide Stage */}
       <div className="flex-1 flex overflow-hidden relative">
         {/* Active Slide Viewer Stage */}
         <main className="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8 overflow-hidden relative bg-[#000000]">
@@ -151,17 +141,6 @@ export default function App() {
             </AnimatePresence>
           </div>
         </main>
-
-        {/* Presenter Mode Side Drawer */}
-        {showNotes && (
-          <PresenterModePanel
-            currentSlideData={currentSlideData}
-            nextSlideData={nextSlideData}
-            onClose={() => setShowNotes(false)}
-            onNextSlide={handleNext}
-            isDarkMode={isDarkMode}
-          />
-        )}
       </div>
 
       {/* Grid Mosaic Modal */}

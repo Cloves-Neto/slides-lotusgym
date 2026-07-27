@@ -3,14 +3,11 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Grid, 
-  MessageSquare, 
   Settings, 
   Maximize, 
   Minimize, 
   Sun, 
-  Moon,
-  Play,
-  RotateCcw
+  Moon
 } from 'lucide-react';
 import { PresenterConfig } from '../types';
 
@@ -20,8 +17,6 @@ interface HeaderProps {
   onPrev: () => void;
   onNext: () => void;
   onOpenGrid: () => void;
-  onToggleNotes: () => void;
-  showNotes: boolean;
   onOpenConfig: () => void;
   isDarkMode: boolean;
   onToggleTheme: () => void;
@@ -36,8 +31,6 @@ export const Header: React.FC<HeaderProps> = ({
   onPrev,
   onNext,
   onOpenGrid,
-  onToggleNotes,
-  showNotes,
   onOpenConfig,
   isDarkMode,
   onToggleTheme,
@@ -57,14 +50,21 @@ export const Header: React.FC<HeaderProps> = ({
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
-        {/* Brand & Title */}
+      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+        {/* Brand & Title with Logo Image */}
         <div className="flex items-center gap-3">
-          <div className="flex items-baseline gap-1">
-            <div className="text-[#FFD700] text-lg font-black tracking-tighter uppercase">
-              LOTUS<span className="text-[#FF0000]">GYM</span>
+          <div className="flex items-center gap-2">
+            <img 
+              src="/lotus-logo.png" 
+              alt="LotusGym Logo" 
+              referrerPolicy="no-referrer"
+              className="h-10 w-auto object-contain"
+            />
+            <div className="text-[#FFD700] text-base font-black tracking-wider uppercase hidden xs:block">
+              LOTUS<span className="text-white">GYM</span>
             </div>
           </div>
+
           <div className="hidden sm:block border-l border-[#333333] pl-3">
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#FFD700] text-[11px] tracking-widest uppercase">
@@ -115,20 +115,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Tools & Mode Toggles */}
         <div className="flex items-center gap-2">
-          {/* Presenter Notes Toggle */}
-          <button
-            onClick={onToggleNotes}
-            className={`px-2.5 py-1.5 text-xs font-medium flex items-center gap-1.5 transition-colors border cursor-pointer ${
-              showNotes
-                ? 'bg-[#FFD700] text-black border-[#FFD700] font-bold'
-                : 'bg-[#111111] text-zinc-300 border-[#333333] hover:bg-[#222222]'
-            }`}
-            title="Modo Apresentador / Notas do Consultor (N)"
-          >
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Notas</span>
-          </button>
-
           {/* Config Modal Toggle */}
           <button
             onClick={onOpenConfig}

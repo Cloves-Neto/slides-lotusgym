@@ -29,19 +29,19 @@ export const EditConfigModal: React.FC<EditConfigModalProps> = ({
   const handleReset = () => {
     setConfig({
       presenterName: 'Cloves Neto',
-      presenterTitle: 'Consultor de Estratégia e Crescimento',
+      presenterTitle: 'CONSULTOR LOTUSGYM',
       year: '2024',
       contactEmail: 'clovesneto@lotusgym.com.br',
-      contactPhone: '(11) 99887-7665'
+      contactPhone: '11967338685'
     });
     setMetrics({
-      activeMembers: 820,
-      monthlyChurn: 8.5,
-      avgTicket: 139.90,
-      monthlyLeads: 240,
-      conversionRate: 12.0,
-      npsScore: 54,
-      unpaidRate: 9.2
+      activeMembers: 5404,
+      monthlyChurn: 0,
+      avgTicket: 0,
+      monthlyLeads: 0,
+      conversionRate: 0,
+      npsScore: 0,
+      unpaidRate: 0
     });
   };
 

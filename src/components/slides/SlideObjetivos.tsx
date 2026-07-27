@@ -8,7 +8,7 @@ export const SlideObjetivos: React.FC = () => {
       <div>
         <div className="flex items-center gap-2 text-xs font-mono font-bold text-yellow-400 uppercase tracking-widest mb-1">
           <Target className="w-4 h-4 text-yellow-400" />
-          <span>SLIDE 06 • METAS DE ALTO IMPACTO</span>
+          <span>SLIDE 05 • METAS DE ALTO IMPACTO</span>
         </div>
         <h2 className="text-2xl md:text-4xl font-black text-yellow-400 uppercase tracking-tight">
           Onde Queremos Chegar
@@ -26,8 +26,8 @@ export const SlideObjetivos: React.FC = () => {
             <CheckSquare className="w-5 h-5 shrink-0" />
             <span className="text-xs font-mono font-bold uppercase">METAS DE VENDAS</span>
           </div>
-          <h3 className="text-sm font-extrabold text-white">Elevar Conversão de Matrículas</h3>
-          <div className="text-2xl font-black font-mono text-yellow-400">12% → 28%</div>
+          <h3 className="text-sm font-extrabold text-white">Aumentar Conversão de Matrículas</h3>
+          <div className="text-2xl font-black font-mono text-yellow-400">+30%</div>
           <p className="text-xs text-zinc-300">
             Automação comercial imediata com qualificação de leads via WhatsApp e CRM.
           </p>

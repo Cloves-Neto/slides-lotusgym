@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   BarChart, 
   Bar, 
@@ -6,13 +6,10 @@ import {
   YAxis, 
   Tooltip, 
   ResponsiveContainer, 
-  LineChart, 
-  Line, 
-  CartesianGrid,
   AreaChart,
   Area 
 } from 'recharts';
-import { LayoutDashboard, TrendingUp, Users, DollarSign, AlertCircle, Sparkles } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, Sparkles } from 'lucide-react';
 import { GymMetrics } from '../../types';
 
 interface SlideDashboardMockupProps {
@@ -20,128 +17,110 @@ interface SlideDashboardMockupProps {
 }
 
 export const SlideDashboardMockup: React.FC<SlideDashboardMockupProps> = ({ gymMetrics }) => {
-  const [timeframe, setTimeframe] = useState<'3M' | '6M' | '12M'>('6M');
-
-  // Simulated live trend data matching LotusGym
-  const monthlyData = [
-    { mes: 'Jan', faturamento: 108, churn: 9.2, alunos: 760, leads: 180 },
-    { mes: 'Fev', faturamento: 112, churn: 8.8, alunos: 785, leads: 210 },
-    { mes: 'Mar', faturamento: 114, churn: 8.5, alunos: 820, leads: 240 },
-    { mes: 'Abr (Proj)', faturamento: 128, churn: 6.2, alunos: 890, leads: 320 },
-    { mes: 'Mai (Proj)', faturamento: 145, churn: 4.8, alunos: 970, leads: 410 },
-    { mes: 'Jun (Proj)', faturamento: 168, churn: 3.9, alunos: 1080, leads: 480 },
+  // Projected growth data from August to December based on the action plan implementation
+  const growthDataAgoDec = [
+    { mes: 'Agosto (Base)', alunos: 5404, faturamentoEstimado: 756 },
+    { mes: 'Setembro', alunos: 5580, faturamentoEstimado: 781 },
+    { mes: 'Outubro', alunos: 5790, faturamentoEstimado: 810 },
+    { mes: 'Novembro', alunos: 6020, faturamentoEstimado: 842 },
+    { mes: 'Dezembro', alunos: 6300, faturamentoEstimado: 882 },
   ];
 
-  const currentMRR = (gymMetrics.activeMembers * gymMetrics.avgTicket) / 1000;
-
   return (
-    <div className="w-full h-full flex flex-col justify-between p-6 md:p-12 bg-black text-white select-none overflow-hidden border border-zinc-800">
+    <div className="w-full h-full flex flex-col justify-between p-6 md:p-10 bg-black text-white select-none overflow-hidden border border-zinc-800">
       {/* Title */}
       <div>
         <div className="flex items-center gap-2 text-xs font-mono font-bold text-yellow-400 uppercase tracking-widest mb-1">
           <LayoutDashboard className="w-4 h-4 text-yellow-400" />
-          <span>SLIDE 15 • MOCKUP OPERACIONAL LIVE</span>
+          <span>SLIDE 15 • PROJEÇÃO ESTRATÉGICA DE CRESCIMENTO</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <h2 className="text-2xl md:text-4xl font-black text-yellow-400 uppercase tracking-tight">
-            Dashboard Gerencial em Tempo Real
+          <h2 className="text-2xl md:text-3xl font-black text-yellow-400 uppercase tracking-tight">
+            Dashboard — Média Estimada de Crescimento (Ago - Dez)
           </h2>
-          <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 p-1 text-xs font-mono">
-            <span className="text-zinc-500 px-2">FILTRO:</span>
-            <button 
-              onClick={() => setTimeframe('3M')}
-              className={`px-2 py-0.5 ${timeframe === '3M' ? 'bg-yellow-400 text-black font-bold' : 'text-zinc-400'}`}
-            >
-              3M
-            </button>
-            <button 
-              onClick={() => setTimeframe('6M')}
-              className={`px-2 py-0.5 ${timeframe === '6M' ? 'bg-yellow-400 text-black font-bold' : 'text-zinc-400'}`}
-            >
-              6M
-            </button>
-            <button 
-              onClick={() => setTimeframe('12M')}
-              className={`px-2 py-0.5 ${timeframe === '12M' ? 'bg-yellow-400 text-black font-bold' : 'text-zinc-400'}`}
-            >
-              12M
-            </button>
+          <div className="flex items-center gap-2 bg-yellow-400/10 border border-yellow-400 px-3 py-1 text-xs font-mono font-bold text-yellow-400 uppercase">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>CRONOGRAMA DE IMPLEMENTAÇÃO DAS IDEIAS</span>
           </div>
         </div>
+        <p className="text-xs text-zinc-300 mt-1 font-light">
+          Evolução média projetada a partir da execução das ações da Jéssica, Joceli, Refil de Isotônico, Cadeiras de Massagem e Sprints.
+        </p>
       </div>
 
-      {/* Mockup Container (Black Canvas with Yellow & Red Charts) */}
+      {/* Mockup Container */}
       <div className="p-4 bg-zinc-950 border-2 border-yellow-400 my-auto space-y-4">
         {/* KPI Mini Header Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="p-2.5 bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase block">FATURAMENTO RECORRENTE</span>
-            <div className="text-xl font-mono font-black text-yellow-400">R$ {currentMRR.toFixed(1)}k/mês</div>
-            <span className="text-[10px] text-emerald-400 font-mono">+18% com projeto</span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase block">BASE ATUAL (AGOSTO)</span>
+            <div className="text-xl font-mono font-black text-yellow-400">5.404 Alunos</div>
+            <span className="text-[10px] text-zinc-400 font-mono">Ponto de Partida Auditado</span>
           </div>
 
           <div className="p-2.5 bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase block">BASE ATIVA</span>
-            <div className="text-xl font-mono font-black text-white">{gymMetrics.activeMembers} Alunos</div>
-            <span className="text-[10px] text-yellow-400 font-mono">Meta 1.100 alunos</span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase block">META DEZEMBRO</span>
+            <div className="text-xl font-mono font-black text-white">6.300 Alunos</div>
+            <span className="text-[10px] text-yellow-400 font-mono">+896 Novos Alunos (+16,5%)</span>
           </div>
 
           <div className="p-2.5 bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase block">CHURN MENSAL</span>
-            <div className="text-xl font-mono font-black text-red-500">{gymMetrics.monthlyChurn}%</div>
-            <span className="text-[10px] text-red-400 font-mono">Queda projetada para 3.9%</span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase block">INCREMENTO DE RECEITA</span>
+            <div className="text-xl font-mono font-black text-yellow-400">+ R$ 126k /mês</div>
+            <span className="text-[10px] text-zinc-400 font-mono">Projeção Mensal Recorrente</span>
           </div>
 
           <div className="p-2.5 bg-zinc-900 border border-zinc-800">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase block">LEADS CAPTADOS</span>
-            <div className="text-xl font-mono font-black text-yellow-400">{gymMetrics.monthlyLeads}/mês</div>
-            <span className="text-[10px] text-emerald-400 font-mono">Conversão 28%</span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase block">ALAVANCAS PRINCIPAIS</span>
+            <div className="text-sm font-mono font-bold text-white">Doses, Refil & Eventos</div>
+            <span className="text-[10px] text-zinc-400 font-mono">Receita Direta no Balcão</span>
           </div>
         </div>
 
-        {/* Recharts Live Visualization */}
+        {/* Recharts Visualization - Agosto a Dezembro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-          {/* Revenue & Growth Bar Chart (8 cols) */}
-          <div className="lg:col-span-8 bg-zinc-900 p-3 border border-zinc-800">
+          {/* Active Members Growth Bar Chart */}
+          <div className="lg:col-span-7 bg-zinc-900 p-3 border border-zinc-800">
             <div className="flex items-center justify-between mb-2 text-xs font-mono">
-              <span className="text-yellow-400 font-bold uppercase">PROJEÇÃO DE FATURAMENTO (R$ K) E CRSCIMENTO</span>
-              <span className="text-zinc-500 text-[10px]">BARRAS AMARALAS SÓLIDAS</span>
+              <span className="text-yellow-400 font-bold uppercase flex items-center gap-1.5">
+                <TrendingUp className="w-3.5 h-3.5" />
+                MÉDIA ESTIMADA DE CRESCIMENTO DE ALUNOS (AGOSTO A DEZEMBRO)
+              </span>
+              <span className="text-zinc-500 text-[10px]">5 MESES DE IMPLEMENTAÇÃO</span>
             </div>
             
             <div className="h-44 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={monthlyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                <BarChart data={growthDataAgoDec} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                   <XAxis dataKey="mes" stroke="#a1a1aa" fontSize={11} tickLine={false} />
-                  <YAxis stroke="#a1a1aa" fontSize={11} tickLine={false} />
+                  <YAxis stroke="#a1a1aa" fontSize={11} tickLine={false} domain={[5000, 6600]} />
                   <Tooltip 
                     contentStyle={{ backgroundColor: '#09090b', borderColor: '#eab308', color: '#fff', fontSize: '12px' }}
-                    formatter={(value: any) => [`R$ ${value}k`, 'Faturamento']}
+                    formatter={(value: any) => [`${value} Alunos`, 'Projeção Média']}
                   />
-                  <Bar dataKey="faturamento" fill="#eab308" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="alunos" fill="#eab308" radius={[3, 3, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          {/* Churn Reduction Line/Area Chart (4 cols - Red Highlights) */}
-          <div className="lg:col-span-4 bg-zinc-900 p-3 border border-zinc-800">
+          {/* Revenue Projection Area */}
+          <div className="lg:col-span-5 bg-zinc-900 p-3 border border-zinc-800">
             <div className="flex items-center justify-between mb-2 text-xs font-mono">
-              <span className="text-red-400 font-bold uppercase">QUEDA DRÁSTICA DE CHURN (%)</span>
-              <span className="text-zinc-500 text-[10px]">VERMELHO</span>
+              <span className="text-yellow-400 font-bold uppercase">PROJEÇÃO DE RECEITA (R$ mil/mês)</span>
+              <span className="text-zinc-500 text-[10px]">RECURSOS & PRODUTOS</span>
             </div>
 
             <div className="h-44 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={monthlyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                <AreaChart data={growthDataAgoDec} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                   <XAxis dataKey="mes" stroke="#a1a1aa" fontSize={11} tickLine={false} />
-                  <YAxis stroke="#a1a1aa" fontSize={11} tickLine={false} domain={[0, 12]} />
+                  <YAxis stroke="#a1a1aa" fontSize={11} tickLine={false} domain={[700, 920]} />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ef4444', color: '#fff', fontSize: '12px' }}
-                    formatter={(value: any) => [`${value}%`, 'Churn Mensal']}
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#eab308', color: '#fff', fontSize: '12px' }}
+                    formatter={(value: any) => [`R$ ${value}k`, 'Faturamento Estimado']}
                   />
-                  <Area type="monotone" dataKey="churn" stroke="#ef4444" fill="#ef4444" fillOpacity={0.2} strokeWidth={2} />
+                  <Area type="monotone" dataKey="faturamentoEstimado" stroke="#eab308" fill="#eab308" fillOpacity={0.25} strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -149,18 +128,18 @@ export const SlideDashboardMockup: React.FC<SlideDashboardMockupProps> = ({ gymM
         </div>
       </div>
 
-      {/* Red Highlight Quote Box as specified in prompt */}
-      <div className="p-3.5 bg-red-950/40 border-2 border-red-600 flex items-center justify-between">
+      {/* Strategic Footer Quote Box */}
+      <div className="p-3.5 bg-zinc-900 border-l-4 border-yellow-400 border-t border-r border-b border-zinc-800 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-7 h-7 bg-red-600 text-white font-black flex items-center justify-center text-xs shrink-0">
-            !
+          <div className="w-7 h-7 bg-yellow-400 text-black font-black flex items-center justify-center text-xs shrink-0">
+            ★
           </div>
           <span className="text-xs md:text-sm font-black text-white uppercase tracking-wider">
-            LEGENDA ESTRATÉGICA: "Decisões baseadas em dados, não em palpites."
+            LEGENDA ESTRATÉGICA: "Crescimento sustentável de 5.404 para 6.300 alunos com adição de receita recorrente de conveniência."
           </span>
         </div>
-        <span className="text-[10px] font-mono text-red-400 hidden sm:inline uppercase">
-          PAINEL DE CONTROLE EXECUTIVO
+        <span className="text-[10px] font-mono text-yellow-400 hidden sm:inline uppercase font-bold">
+          PLANO AGOSTO - DEZEMBRO
         </span>
       </div>
     </div>

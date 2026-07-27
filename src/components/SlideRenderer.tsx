@@ -3,8 +3,7 @@ import { PresenterConfig, GymMetrics } from '../types';
 
 import { SlideCapa } from './slides/SlideCapa';
 import { SlideResumoExecutivo } from './slides/SlideResumoExecutivo';
-import { SlideSobreLotus } from './slides/SlideSobreLotus';
-import { SlideCenarioAtual } from './slides/SlideCenarioAtual';
+import { SlideComparativoRedes } from './slides/SlideComparativoRedes';
 import { SlideGargalos } from './slides/SlideGargalos';
 import { SlideObjetivos } from './slides/SlideObjetivos';
 import { SlidePilares } from './slides/SlidePilares';
@@ -12,18 +11,18 @@ import { SlideMarketing } from './slides/SlideMarketing';
 import { SlideFunilComercial } from './slides/SlideFunilComercial';
 import { SlideExperiencia } from './slides/SlideExperiencia';
 import { SlideLotusClub } from './slides/SlideLotusClub';
-import { SlideEstoque } from './slides/SlideEstoque';
+import { SlideEquipamentosConveniencia } from './slides/SlideEquipamentosConveniencia';
 import { SlideConvenios } from './slides/SlideConvenios';
 import { SlideEcossistema } from './slides/SlideEcossistema';
 import { SlideDashboardMockup } from './slides/SlideDashboardMockup';
 import { SlideBI } from './slides/SlideBI';
 import { SlideIA } from './slides/SlideIA';
 import { SlideRoadmap } from './slides/SlideRoadmap';
-import { SlideKPIs } from './slides/SlideKPIs';
-import { SlideEstimativaImpacto } from './slides/SlideEstimativaImpacto';
-import { SlideROIProjeto } from './slides/SlideROIProjeto';
+import { SlideIdeiasJessica } from './slides/SlideIdeiasJessica';
+import { SlideIdeiasJoceli } from './slides/SlideIdeiasJoceli';
+import { SlideSprintsMondayClickUp } from './slides/SlideSprintsMondayClickUp';
+import { SlideMatrizIndicadores } from './slides/SlideMatrizIndicadores';
 import { SlideVisao2028 } from './slides/SlideVisao2028';
-import { SlideEncerramento } from './slides/SlideEncerramento';
 
 interface SlideRendererProps {
   slideId: number;
@@ -42,47 +41,45 @@ export const SlideRenderer: React.FC<SlideRendererProps> = ({
     case 2:
       return <SlideResumoExecutivo />;
     case 3:
-      return <SlideSobreLotus />;
+      return <SlideComparativoRedes />;
     case 4:
-      return <SlideCenarioAtual gymMetrics={gymMetrics} />;
-    case 5:
       return <SlideGargalos />;
-    case 6:
+    case 5:
       return <SlideObjetivos />;
-    case 7:
+    case 6:
       return <SlidePilares />;
-    case 8:
+    case 7:
       return <SlideMarketing />;
-    case 9:
+    case 8:
       return <SlideFunilComercial />;
-    case 10:
+    case 9:
       return <SlideExperiencia />;
-    case 11:
+    case 10:
       return <SlideLotusClub />;
+    case 11:
+      return <SlideEquipamentosConveniencia />;
     case 12:
-      return <SlideEstoque />;
-    case 13:
       return <SlideConvenios />;
-    case 14:
+    case 13:
       return <SlideEcossistema />;
-    case 15:
+    case 14:
       return <SlideDashboardMockup gymMetrics={gymMetrics} />;
-    case 16:
+    case 15:
       return <SlideBI />;
-    case 17:
+    case 16:
       return <SlideIA />;
-    case 18:
+    case 17:
       return <SlideRoadmap />;
+    case 18:
+      return <SlideIdeiasJessica />;
     case 19:
-      return <SlideKPIs gymMetrics={gymMetrics} />;
+      return <SlideIdeiasJoceli />;
     case 20:
-      return <SlideEstimativaImpacto gymMetrics={gymMetrics} />;
+      return <SlideSprintsMondayClickUp />;
     case 21:
-      return <SlideROIProjeto />;
+      return <SlideMatrizIndicadores gymMetrics={gymMetrics} />;
     case 22:
       return <SlideVisao2028 />;
-    case 23:
-      return <SlideEncerramento presenterConfig={presenterConfig} />;
     default:
       return <SlideCapa presenterConfig={presenterConfig} />;
   }
